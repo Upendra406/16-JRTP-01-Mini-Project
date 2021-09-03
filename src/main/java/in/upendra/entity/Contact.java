@@ -8,34 +8,39 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import lombok.Data;
 
 @Entity
 @Table(name = "CONTACT_DETAILS")
 @Data
 public class Contact {
-	
+
 	@Id
 	@GeneratedValue
 	@Column(name = "CONTACT_ID")
 	private Integer contactId;
-	
+
 	@Column(name = "CONTACT_NAME")
 	private String contactName;
-	
+
 	@Column(name = "CONTACT_EMAIL")
 	private String contactEmail;
-	
+
 	@Column(name = "CONTACT_NUMBER")
 	private Long contactNumber;
-	
+
 	@Column(name = "ACTIVE_SW")
 	private Character activeSwitch;
-	
-	@Column(name = "CREATED_DATE")
+
+	@Column(name = "CREATED_DATE", updatable = false)
+	@CreationTimestamp
 	private LocalDate createdDate;
-	
-	@Column(name = "UPDATED_DATE")
+
+	@Column(name = "UPDATED_DATE", insertable = false)
+	@UpdateTimestamp
 	private LocalDate updatedDate;
 
 }
